@@ -1,8 +1,9 @@
-let x = [-200, -250, -400, -400, -400, -5, -1];
+let x = [3, 1, 1, 2, 2, 2, 4, 5];
 function getResult(a) {
 
     const length = a.length;
-    const minArray = minValue(a);
+    const minArray = minValues(a);
+    const min = minValue(a);
     let counter = 1;
     let isTrue = true;
     for (let i = 0; i < length; i++) {
@@ -11,6 +12,11 @@ function getResult(a) {
             break;
         }
     }
+
+    if (min < minArray) {
+        isTrue = false;
+    }
+
     if (length <= 10 && length >= 3 && isTrue === true) {
         let b = [], c = [];
         goesDown(a, b, minArray);
@@ -30,14 +36,7 @@ function getResult(a) {
     return counter;
 }
 
-function minValue(array) {
-    // let min = array[0];
-    // for (let i = 1; i < array.length; i++) {
-    //     if (min > array[i]) {
-    //         min = array[i];
-    //     }
-    // }
-    // return min;
+function minValues(array) {
     let equalsArray = [];
     let j = 0;
     for (let i = 1; i < array.length; i++) {
@@ -51,6 +50,16 @@ function minValue(array) {
 
     return Math.min.apply(null, equalsArray);
 
+}
+
+function minValue(array) {
+    let min = array[0];
+    for (let i = 1; i < array.length; i++) {
+        if (min > array[i]) {
+            min = array[i];
+        }
+    }
+    return min;
 }
 
 function goesDown(a, b, min) {
